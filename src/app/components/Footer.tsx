@@ -11,7 +11,7 @@ export function Footer() {
               Sanjaya Rajbhandari
             </h3>
             <p className="text-gray-400 mb-4">
-              Professional Graphics Designer with 2.5+ years of experience creating visual excellence in branding, packaging, and digital design.
+              Professional Graphics Designer with 3+ years of experience creating visual excellence in branding, packaging, and digital design.
             </p>
             <div className="flex gap-4">
               <a

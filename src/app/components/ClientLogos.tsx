@@ -41,7 +41,7 @@ export function ClientLogos() {
                 <img
                   src={client.image}
                   alt={client.name}
-                  className="max-w-[90%] max-h-[90%] object-contain"
+                  className="max-w-[140%] max-h-[140%] object-contain"
                 />
               </div>
             </motion.div>

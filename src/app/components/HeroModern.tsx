@@ -50,7 +50,7 @@ export function HeroModern() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-blue-100"
             >
               <Sparkles className="w-5 h-5 text-blue-600" />
-              <span className="text-sm font-medium text-gray-700">Professional Graphics Designer</span>
+              <span className="text-sm font-medium text-gray-700 mt-2">Professional Graphics Designer</span>
             </motion.div>
 
             {/* Main Heading */}
@@ -74,7 +74,7 @@ export function HeroModern() {
                 transition={{ delay: 0.4 }}
                 className="flex items-center gap-3 mt-6"
               >
-                <Palette className="w-6 h-6 text-blue-600" />
+                <img src="/assets/images/icons/pen-tool.png" alt="Pen Tool" className="w-6 h-6" />
                 <p className="text-2xl md:text-3xl font-medium text-gray-700">
                   Crafting Visual Excellence
                 </p>
@@ -273,6 +273,25 @@ export function HeroModern() {
                   >
                     <div className="bg-white p-3 rounded-xl shadow-xl border border-green-100">
                       <img src="/assets/images/icons/premiere.png" alt="Premiere Pro" className="w-8 h-8 object-contain" />
+                    </div>
+                  </motion.div>
+                  
+                  {/* Illustrator Icon */}
+                  <motion.div
+                    animate={{
+                      x: [45, 0, -45, 0, 45],
+                      y: [0, 45, 0, -45, 0],
+                    }}
+                    transition={{
+                      duration: 14,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 0.6
+                    }}
+                    className="absolute top-1/4 left-0 transform -translate-x-0 translate-y-0"
+                  >
+                    <div className="bg-white p-3 rounded-xl shadow-xl border border-orange-100">
+                      <img src="/assets/images/icons/illustrator.png" alt="Illustrator" className="w-8 h-8 object-contain" />
                     </div>
                   </motion.div>
                 </motion.div>
