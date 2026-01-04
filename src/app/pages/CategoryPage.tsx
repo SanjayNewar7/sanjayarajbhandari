@@ -50,8 +50,8 @@ const categoryData: Record<string, { title: string; description: string; works: 
       { id: 1, title: 'Business Brochure', image: '/assets/images/brochures/1.jpg', description: 'Corporate brochure layout' },
       { id: 2, title: 'Product Catalog', image: '/assets/images/brochures/2.jpg', description: 'Multi-page product catalog' },
       { id: 3, title: 'Product Brochure', image: '/assets/images/brochures/Screenshot 2025-05-11 172629.png', description: 'Tourism promotional material' },
-      { id: 4, title: 'Product Brochure', image: '/assets/images/brochures/medical-brochure-1.jpg', description: 'Healthcare information design' },
-      { id: 5, title: 'Real Estate', image: '/assets/images/brochures/real-estate-1.jpg', description: 'Property marketing brochure' },
+      { id: 4, title: 'Product Brochure', image: '/assets/images/brochures/AI SMART GLASS DRAFT mockup.png', description: 'Healthcare information design' },
+      { id: 5, title: 'Construction Brouchure', image: '/assets/images/brochures/Inside Preview Draft 3.png', description: 'Construction marketing brochure' },
       { id: 6, title: 'Educational Booklet', image: '/assets/images/brochures/educational-booklet-1.jpg', description: 'School information booklet' },
     ]
   },

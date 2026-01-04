@@ -26,18 +26,17 @@ const experiences = [
 
 export function Experience() {
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="experience" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-gray-900 mb-4 text-center">
-            About Me
+            Professional Experience
           </h2>
           <p className="text-lg text-gray-600 text-center mb-16 max-w-2xl mx-auto">
-            Passionate graphics designer with a keen eye for detail and a commitment to creating 
-            impactful visual experiences that resonate with audiences.
+            My journey in the design industry with various roles and achievements.
           </p>
 
-          <h3 className="text-3xl font-bold text-gray-900 mb-8">Experience</h3>
+          <h3 className="text-3xl font-bold text-gray-900 mb-8">Work History</h3>
           
           <div className="space-y-6">
             {experiences.map((exp, index) => (

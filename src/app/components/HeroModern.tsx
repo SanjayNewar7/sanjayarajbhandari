@@ -92,7 +92,7 @@ export function HeroModern() {
               Specializing in <span className="font-semibold text-blue-600">branding</span>, 
               <span className="font-semibold text-cyan-600"> packaging</span>, and 
               <span className="font-semibold text-blue-600"> digital design</span> with 
-              2.5+ years of creative excellence.
+              3+ years of creative excellence.
             </motion.p>
 
             {/* Stats */}
@@ -104,7 +104,7 @@ export function HeroModern() {
             >
               {[
                 { number: '3+', label: 'Years Experience' },
-                { number: '55+', label: 'Projects Done' },
+                { number: '70+', label: 'Projects Done' },
                 { number: '5', label: 'Active Clients' }
               ].map((stat, idx) => (
                 <div key={idx} className="text-center">

@@ -1,6 +1,103 @@
 import { Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+import { useState } from 'react';
 
 export function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+    
+    // Clear error when user starts typing
+    if (errors[name as keyof typeof errors]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
+  };
+  
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    };
+    
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+      isValid = false;
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+      isValid = false;
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
+      newErrors.email = 'Email is invalid';
+      isValid = false;
+    }
+    
+    if (!formData.subject.trim()) {
+      newErrors.subject = 'Subject is required';
+      isValid = false;
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+      isValid = false;
+    }
+    
+    setErrors(newErrors);
+    return isValid;
+  };
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (validateForm()) {
+      // Create mailto link with pre-filled information
+      const recipient = 'Sanjaynewar007@gmail.com';
+      const subject = encodeURIComponent(formData.subject);
+      const body = encodeURIComponent(`
+
+From: ${formData.name}
+Email: ${formData.email}
+
+Message:
+${formData.message}`);
+      
+      const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
+      
+      // Open the default email client
+      window.location.href = mailtoLink;
+      
+      // Reset form after successful submission
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    }
+  };
+  
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -113,41 +210,57 @@ export function Contact() {
             <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-8 rounded-xl text-white h-full">
               <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
               
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
                   <label className="block text-sm mb-2">Your Name</label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 rounded-lg text-white/80 bg-white/10 focus:outline-none focus:ring-2 focus:ring-white placeholder:text-white/60"
-                    placeholder="John Doe"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className={`w-full px-4 py-3 rounded-lg text-white/80 bg-white/10 focus:outline-none focus:ring-2 focus:ring-white placeholder:text-white/60 ${errors.name ? 'border-2 border-red-500' : ''}`}
+                    placeholder="Ramesh Shrestha"
                   />
+                  {errors.name && <p className="text-red-300 text-sm mt-1">{errors.name}</p>}
                 </div>
 
                 <div>
                   <label className="block text-sm mb-2">Your Email</label>
                   <input
                     type="email"
-                    className="w-full px-4 py-3 rounded-lg text-white/80 bg-white/10 focus:outline-none focus:ring-2 focus:ring-white placeholder:text-white/60"
-                    placeholder="john@example.com"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className={`w-full px-4 py-3 rounded-lg text-white/80 bg-white/10 focus:outline-none focus:ring-2 focus:ring-white placeholder:text-white/60 ${errors.email ? 'border-2 border-red-500' : ''}`}
+                    placeholder="ramesh.shrestha@example.com"
                   />
+                  {errors.email && <p className="text-red-300 text-sm mt-1">{errors.email}</p>}
                 </div>
 
                 <div>
                   <label className="block text-sm mb-2">Subject</label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 rounded-lg text-white/80 bg-white/10 focus:outline-none focus:ring-2 focus:ring-white placeholder:text-white/60"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    className={`w-full px-4 py-3 rounded-lg text-white/80 bg-white/10 focus:outline-none focus:ring-2 focus:ring-white placeholder:text-white/60 ${errors.subject ? 'border-2 border-red-500' : ''}`}
                     placeholder="Project Inquiry"
                   />
+                  {errors.subject && <p className="text-red-300 text-sm mt-1">{errors.subject}</p>}
                 </div>
 
                 <div>
                   <label className="block text-sm mb-2">Message</label>
                   <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
                     rows={4}
-                    className="w-full px-4 py-3 rounded-lg text-white/80 bg-white/10 focus:outline-none focus:ring-2 focus:ring-white resize-none placeholder:text-white/60"
+                    className={`w-full px-4 py-3 rounded-lg text-white/80 bg-white/10 focus:outline-none focus:ring-2 focus:ring-white resize-none placeholder:text-white/60 ${errors.message ? 'border-2 border-red-500' : ''}`}
                     placeholder="Tell me about your project..."
                   ></textarea>
+                  {errors.message && <p className="text-red-300 text-sm mt-1">{errors.message}</p>}
                 </div>
 
                 <button
