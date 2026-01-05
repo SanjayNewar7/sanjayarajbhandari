@@ -145,11 +145,12 @@ export function Portfolio() {
               to={`/category/${categorySlugMap[item.category]}`}
               className="group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer block"
             >
-              <div className="aspect-[4/3] overflow-hidden">
+              <div className="aspect-[1000/1080] overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
                 />
               </div>
                 

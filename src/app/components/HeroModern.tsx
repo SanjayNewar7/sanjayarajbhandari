@@ -61,7 +61,7 @@ export function HeroModern() {
                 transition={{ delay: 0.3 }}
                 className="text-6xl md:text-7xl lg:text-8xl font-bold leading-tight"
               >
-                <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                <span className="text-blue-600">
                   Sanjaya
                 </span>
                 <br />
@@ -195,6 +195,7 @@ export function HeroModern() {
                 src="/assets/images/profile/Sanjaya Rajbhandari.jpg"
                 alt="Sanjaya Rajbhandari"
                 className="relative w-96 h-96 object-cover rounded-full border-8 border-white shadow-2xl ring-4 ring-blue-100"
+                loading="lazy"
               />
               
               {/* Floating Elements - Official Software Icons orbiting around the profile image */}

@@ -194,11 +194,12 @@ export function CategoryPage() {
                 className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
                 onClick={() => openLightbox(index)}
               >
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="aspect-[1000/1080] overflow-hidden">
                   <img
                     src={work.image}
                     alt={work.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
                   />
                 </div>
                 
@@ -285,6 +286,7 @@ export function CategoryPage() {
                 src={data.works[currentIndex].image}
                 alt={data.works[currentIndex].title}
                 className="max-h-[80vh] max-w-full object-contain"
+                loading="lazy"
               />
             </div>
             
