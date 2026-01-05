@@ -31,7 +31,7 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-blue-100 shadow-sm">
       <nav className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-3 sm:py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent hover:from-blue-700 hover:to-cyan-700 transition-all">
+          <Link to="/" className="text-xl sm:text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
             Sanjaya Rajbhandari
           </Link>
           

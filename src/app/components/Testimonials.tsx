@@ -1,5 +1,5 @@
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 
 const testimonials = [
@@ -122,46 +122,49 @@ export function Testimonials() {
 
         <div className="relative max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row gap-8 justify-center items-stretch">
-            {testimonialsToShow.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex-1 min-w-[300px]"
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
-                    <Quote className="w-8 h-8 text-blue-600" />
+            <AnimatePresence mode="popLayout">
+              {testimonialsToShow.map((testimonial, index) => (
+                <motion.div
+                  key={testimonial.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+                  className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex-1 min-w-[300px]"
+                >
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
+                      <Quote className="w-8 h-8 text-blue-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900">
+                        {testimonial.name}
+                      </h3>
+                      <p className="text-sm text-gray-500">
+                        {testimonial.role}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900">
-                      {testimonial.name}
-                    </h3>
-                    <p className="text-sm text-gray-500">
-                      {testimonial.role}
-                    </p>
+                  
+                  <p className="text-gray-700 mb-6 italic">
+                    "{testimonial.content}"
+                  </p>
+                  
+                  <div className="flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-5 h-5 ${
+                          i < testimonial.rating
+                            ? 'text-yellow-400 fill-current'
+                            : 'text-gray-300'
+                        }`}
+                      />
+                    ))}
                   </div>
-                </div>
-                
-                <p className="text-gray-700 mb-6 italic">
-                  "{testimonial.content}"
-                </p>
-                
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-5 h-5 ${
-                        i < testimonial.rating
-                          ? 'text-yellow-400 fill-current'
-                          : 'text-gray-300'
-                      }`}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
           
           {/* Navigation Arrows */}

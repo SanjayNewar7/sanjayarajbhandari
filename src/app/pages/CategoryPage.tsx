@@ -16,7 +16,7 @@ const categoryData: Record<string, { title: string; description: string; works: 
       { id: 3, title: 'Event Graphics', image: '/assets/images/graphics/Neon Furniture Kukur Tihar 2.jpg', description: 'Complete event branding package' },
       { id: 4, title: 'Typography Design', image: '/assets/images/graphics/python with djyango ad posts.png', description: 'Experimental typography work' },
       { id: 5, title: 'Advertising Post', image: '/assets/images/graphics/Loopix Creative Post Ads 2.jpg', description: 'Modern advertising design' },
-      { id: 6, title: 'Concert Poster', image: '/assets/images/graphics/music3.png', description: 'Live concert promotional material' },
+      { id: 6, title: 'Consultancy Post', image: '/assets/images/social-media/Oasis Education Promotional Post 2.jpg', description: 'Consultancy Post design for social media' },
     ]
   },
   'social-media': {
@@ -159,7 +159,7 @@ export function CategoryPage() {
       <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-14 md:pb-16 bg-gradient-to-br from-blue-600 to-cyan-600 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <Link
-            to="/"
+            to="/#portfolio"
             className="inline-flex items-center gap-2 text-white/90 hover:text-white mb-6 sm:mb-8 group"
           >
             <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-1 transition-transform" />
