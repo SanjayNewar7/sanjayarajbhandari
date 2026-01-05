@@ -161,6 +161,17 @@ export function CategoryPage() {
           <Link
             to="/#portfolio"
             className="inline-flex items-center gap-2 text-white/90 hover:text-white mb-6 sm:mb-8 group"
+            onClick={(e) => {
+              e.preventDefault();
+              // Navigate to home first, then scroll to portfolio
+              window.location.href = '/';
+              setTimeout(() => {
+                const element = document.getElementById('portfolio');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }, 100);
+            }}
           >
             <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-1 transition-transform" />
             <span className="text-sm sm:text-base">Back to Portfolio</span>
