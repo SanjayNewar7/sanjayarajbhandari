@@ -104,8 +104,8 @@ export function HeroModern() {
             >
               {[
                 { number: '3+', label: 'Years Experience' },
-                { number: '72', label: 'Projects Done' },
-                { number: '5', label: 'Active Clients' }
+                { number: '72+', label: 'Projects Done' },
+                { number: '6', label: 'Active Clients' }
               ].map((stat, idx) => (
                 <div key={idx} className="text-center">
                   <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
