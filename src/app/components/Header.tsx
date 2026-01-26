@@ -49,6 +49,9 @@ export function Header() {
             <button onClick={() => scrollToSection('portfolio')} className="text-gray-700 hover:text-blue-600 transition-colors font-medium text-sm sm:text-base">
               Work
             </button>
+            <Link to="/gallery" className="text-gray-700 hover:text-blue-600 transition-colors font-medium text-sm sm:text-base">
+              Gallery
+            </Link>
             <button onClick={() => scrollToSection('contact')} className="px-4 py-2 sm:px-5 sm:py-2 md:px-6 md:py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:shadow-lg transition-all text-sm sm:text-base">
               Contact
             </button>
@@ -78,6 +81,9 @@ export function Header() {
             <button onClick={() => scrollToSection('portfolio')} className="text-gray-700 hover:text-blue-600 transition-colors text-left font-medium py-2 sm:py-3 text-sm sm:text-base">
               Work
             </button>
+            <Link to="/gallery" className="text-gray-700 hover:text-blue-600 transition-colors text-left font-medium py-2 sm:py-3 text-sm sm:text-base">
+              Gallery
+            </Link>
             <button onClick={() => scrollToSection('contact')} className="text-gray-700 hover:text-blue-600 transition-colors text-left font-medium py-2 sm:py-3 text-sm sm:text-base">
               Contact
             </button>
