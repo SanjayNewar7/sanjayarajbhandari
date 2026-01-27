@@ -85,7 +85,7 @@ export function GalleryPage() {
     { id: 2, src: "assets/images/gallery/Oasis Education Promotional Post 3.jpg" },
     { id: 3, src: "assets/images/gallery/Oasis Education Promotional Post 2.jpg" },
     { id: 4, src: "assets/images/gallery/admission Open.jpg" },
-    { id: 5, src: "public/assets/images/gallery/digital promo 78 1.jpg" },
+    { id: 5, src: "assets/images/gallery/digital promo 78 1.jpg" },
     { id: 6, src: "assets/images/gallery/digital promo 88 02.jpg" },
     { id: 7, src: "assets/images/gallery/Glossy Promo 33.jpg" },
     { id: 8, src: "assets/images/gallery/Glossy Promo 80.jpg" },
