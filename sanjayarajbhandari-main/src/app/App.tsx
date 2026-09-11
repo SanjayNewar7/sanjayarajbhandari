@@ -4,6 +4,8 @@ import { CategoryPage } from './pages/CategoryPage';
 import { GalleryPage } from './pages/GalleryPage';
 import { BlogPage } from './pages/BlogPage';
 import { BlogPostPage } from './pages/BlogPostPage';
+import { EventsPage } from './pages/EventsPage';
+import { EventDetailPage } from './pages/EventDetailPage';
 
 export default function App() {
   return (
@@ -14,6 +16,8 @@ export default function App() {
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/events/:slug" element={<EventDetailPage />} />
       </Routes>
     </Router>
   );

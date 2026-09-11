@@ -57,6 +57,13 @@ const testimonials = [
     role: "Owner, Kathmandu Bakes & Cakes",
     content: "Hamro bakery ko packaging design Sanjaya le bahut creative banayeko. Unko design le hamro product lai customer ko attention kadaidincha.",
     image: dummyAvatar("Pooja Aryal"),
+  },
+  {
+    id: 7,
+    name: "Peter Shine",
+    role: "WARABA Director",
+    content: "You're the man great work Sanjaya",
+    image: "/assets/images/testimonial/waraba3.webp",
   }
 ];
 
@@ -100,7 +107,7 @@ export function Testimonials() {
 
         <div className="relative max-w-5xl mx-auto flex items-center justify-center gap-3 sm:gap-5">
           {/* Previous — dimmed, de-emphasized */}
-          <div className="hidden md:block w-56 shrink-0">
+          <div className="hidden lg:block w-40 xl:w-56 shrink-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={testimonials[prevIndex].id}
@@ -125,7 +132,7 @@ export function Testimonials() {
           </div>
 
           {/* Center — focused, wide rectangle */}
-          <div className="w-full max-w-2xl shrink-0 z-10">
+          <div className="w-full max-w-2xl min-w-0 z-10">
             <AnimatePresence mode="wait">
               <motion.div
                 key={testimonials[currentIndex].id}
@@ -159,7 +166,7 @@ export function Testimonials() {
           </div>
 
           {/* Next — dimmed, de-emphasized */}
-          <div className="hidden md:block w-56 shrink-0">
+          <div className="hidden lg:block w-40 xl:w-56 shrink-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={testimonials[nextIndex].id}

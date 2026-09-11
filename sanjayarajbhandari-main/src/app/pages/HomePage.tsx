@@ -4,6 +4,8 @@ import { Experience } from '../components/Experience';
 import { Skills } from '../components/Skills';
 import { Work } from '../components/Work';
 import { ClientLogos } from '../components/ClientLogos';
+import { GlobalReach } from '../components/GlobalReach';
+import { Events } from '../components/Events';
 import { Testimonials } from '../components/Testimonials';
 import { Contact } from '../components/Contact';
 import { Footer } from '../components/Footer';
@@ -17,6 +19,8 @@ export function HomePage() {
       <Skills />
       <Work />
       <ClientLogos />
+      <GlobalReach />
+      <Events />
       <Testimonials />
       <Contact />
       <Footer />

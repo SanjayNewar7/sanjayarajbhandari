@@ -149,8 +149,21 @@ export function InteractiveGridBackground() {
 
     frame = requestAnimationFrame(draw);
 
+    // Pause entirely while the hero is scrolled out of view — a full-viewport
+    // canvas redrawing every frame forever, even on unrelated pages of the
+    // site, was a real drag on frame time for no visible benefit.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        cancelAnimationFrame(frame);
+        if (entry.isIntersecting) frame = requestAnimationFrame(draw);
+      },
+      { threshold: 0 }
+    );
+    io.observe(parent);
+
     return () => {
       cancelAnimationFrame(frame);
+      io.disconnect();
       window.removeEventListener('resize', resize);
       window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('pointerleave', handlePointerLeave);

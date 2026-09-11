@@ -88,7 +88,10 @@ export function Experience() {
   const pathD = buildWavePath();
 
   return (
-    <section id="experience" className="relative py-20 sm:py-24 overflow-hidden">
+    <section
+      id="experience"
+      className="relative min-h-screen flex flex-col justify-center py-[clamp(3rem,10vh,6rem)] overflow-hidden"
+    >
       <ExperienceBackground />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -97,7 +100,7 @@ export function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10 sm:mb-12"
+          className="text-center mb-[clamp(1.5rem,5vh,3rem)]"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Professional Experience
@@ -112,7 +115,7 @@ export function Experience() {
             stays open while the cursor is anywhere in this wrapper (node or
             panel) and closes only when it leaves the whole area. */}
         <div className="overflow-x-auto pb-2" onMouseLeave={() => setActiveIndex(null)}>
-          <div className="relative h-[420px] sm:h-[460px] min-w-[760px] max-w-5xl mx-auto">
+          <div className="relative h-[clamp(320px,52vh,480px)] min-w-[760px] max-w-5xl mx-auto">
             <svg viewBox="0 0 1000 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
               <path d={pathD} fill="none" stroke="#7dd3ff" strokeOpacity={0.4} strokeWidth={1.6} vectorEffect="non-scaling-stroke" />
             </svg>
@@ -164,7 +167,7 @@ export function Experience() {
                         animate={{ opacity: 1, scale: 1, x: 0 }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute z-20 w-64 sm:w-72 rounded-2xl bg-white/[0.16] backdrop-blur-3xl border border-white/25 shadow-xl p-4 sm:p-5 -translate-y-1/2"
+                        className="absolute z-20 w-72 sm:w-80 rounded-2xl bg-white/[0.16] backdrop-blur-3xl border border-white/25 shadow-xl p-4 -translate-y-1/2"
                         style={
                           flipLeft
                             ? { right: `${100 - xPct}%`, marginRight: 46, top: `${nodeY[i]}%` }
@@ -183,8 +186,8 @@ export function Experience() {
                         </div>
                         <h3 className="text-base font-bold text-white leading-tight">{exp.title}</h3>
                         <p className="text-[#7dd3ff] text-sm font-semibold mb-2">{exp.company}</p>
-                        <p className="text-white/85 text-xs mb-3">{exp.description}</p>
-                        <ul className="text-white/80 text-xs space-y-1 pt-3 border-t border-white/15 list-disc list-inside">
+                        <p className="text-white/85 text-xs mb-2">{exp.description}</p>
+                        <ul className="text-white/80 text-xs space-y-1 pt-2 border-t border-white/15 list-disc list-inside">
                           {exp.duties.map((duty) => (
                             <li key={duty}>{duty}</li>
                           ))}

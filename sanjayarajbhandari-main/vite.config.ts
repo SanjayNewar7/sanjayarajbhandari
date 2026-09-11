@@ -16,4 +16,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  worker: {
+    // maplibre-gl loads its vector-tile worker as an ES module worker; without
+    // this, the worker silently fails to process GeoJSON sources under Vite's
+    // dev server (geojson sources hang forever in a "loading" state).
+    format: 'es',
+  },
 })

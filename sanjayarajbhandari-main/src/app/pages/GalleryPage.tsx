@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, ArrowLeft, X } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function GalleryPage() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -208,6 +208,8 @@ export function GalleryPage() {
                   <img
                     src={image.src}
                     alt={`Design ${image.id}`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                     style={{ aspectRatio: '1000/1100' }}
                     onError={(e) => {
@@ -265,6 +267,8 @@ export function GalleryPage() {
                   <img
                     src={image.src}
                     alt={`Latest Design ${image.id}`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                     style={{ aspectRatio: '1000/1100' }}
                     onError={(e) => {
@@ -521,6 +525,8 @@ function PackagingSection({ packagingImages }: { packagingImages: Array<{ id: nu
                             <img
                               src={image.src}
                               alt={`Packaging Design ${image.id}`}
+                              loading="lazy"
+                              decoding="async"
                               className="w-full h-full object-cover"
                               style={{ aspectRatio: '1000/1100' }}
                               onError={(e) => {
@@ -623,6 +629,8 @@ function HousePreviewSection({ housePreviewImages }: { housePreviewImages: Array
                             <img
                               src={image.src}
                               alt={`House Preview ${image.id}`}
+                              loading="lazy"
+                              decoding="async"
                               className="w-full h-full object-cover"
                               style={{ aspectRatio: '1000/1100' }}
                               onError={(e) => {
@@ -703,6 +711,8 @@ function LogoDesignSection({ logoDesignImages }: { logoDesignImages: Array<{ id:
                 <img
                   src={image.src}
                   alt={image.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain"
                   onError={(e) => {
                     const img = e.target as HTMLImageElement;
@@ -756,6 +766,8 @@ function FlyersSection({ flyersImages }: { flyersImages: Array<{ id: number; src
                 <img
                   src={image.src}
                   alt={image.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                   style={{ aspectRatio: '1000/1100' }}
                   onError={(e) => {

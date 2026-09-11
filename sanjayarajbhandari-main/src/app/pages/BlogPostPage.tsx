@@ -149,6 +149,8 @@ export function BlogPostPage() {
                           <img
                             src={relatedPost.image}
                             alt={relatedPost.title}
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           />
                         </div>

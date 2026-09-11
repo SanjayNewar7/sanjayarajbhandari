@@ -111,7 +111,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1 lg:gap-1.5 bg-black/[0.03] dark:bg-white/[0.06] rounded-full p-1">
+          <div className="hidden lg:flex items-center gap-1 xl:gap-1.5 bg-black/[0.03] dark:bg-white/[0.06] rounded-full p-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -142,9 +142,18 @@ export function Header() {
             >
               Blog
             </Link>
+            <Link
+              to="/events"
+              className={`px-3.5 lg:px-4 py-1.5 rounded-full transition-colors font-medium text-sm ${location.pathname === '/events'
+                  ? 'bg-white dark:bg-[#2c2c2e] text-[#0a84ff] shadow-sm'
+                  : 'text-[#3a3a3c] dark:text-[#c7c7cc] hover:text-[#0a84ff]'
+                }`}
+            >
+              Events
+            </Link>
           </div>
 
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <ThemeToggle />
             <button
               onClick={() => scrollToSection('contact')}
@@ -155,7 +164,7 @@ export function Header() {
           </div>
 
           {/* Mobile controls */}
-          <div className="flex md:hidden items-center gap-2">
+          <div className="flex lg:hidden items-center gap-2">
             <ThemeToggle />
             <button
               className="w-9 h-9 rounded-full flex items-center justify-center bg-black/[0.04] dark:bg-white/10 text-[#1d1d1f] dark:text-white"
@@ -169,7 +178,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-2 glass-nav border border-black/[0.06] dark:border-white/[0.08] rounded-3xl p-2 shadow-xl flex flex-col gap-1">
+          <div className="lg:hidden mt-2 glass-nav border border-black/[0.06] dark:border-white/[0.08] rounded-3xl p-2 shadow-xl flex flex-col gap-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -197,6 +206,14 @@ export function Header() {
                 }`}
             >
               Blog
+            </Link>
+            <Link
+              to="/events"
+              onClick={() => setIsMenuOpen(false)}
+              className={`text-left font-medium py-2.5 px-4 rounded-2xl text-sm ${location.pathname === '/events' ? 'bg-[#0a84ff]/10 text-[#0a84ff]' : 'text-[#3a3a3c] dark:text-[#c7c7cc]'
+                }`}
+            >
+              Events
             </Link>
             <button
               onClick={() => scrollToSection('contact')}

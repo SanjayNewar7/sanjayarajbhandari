@@ -76,24 +76,24 @@ export function HeroModern() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden bg-[#f5f5f7] dark:bg-black pt-24 sm:pt-28"
+      className="relative min-h-screen flex items-center overflow-hidden bg-[#f5f5f7] dark:bg-black pt-20 sm:pt-24 lg:pt-[clamp(3.5rem,10vh,5.5rem)]"
     >
       <InteractiveGridBackground />
 
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 md:py-16 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 md:gap-16 items-center">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-6 sm:py-8 lg:py-[clamp(0.5rem,1.5vh,1rem)] relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-10 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="space-y-6 sm:space-y-7"
+            className="space-y-5 sm:space-y-6 lg:space-y-[clamp(0.75rem,2.2vh,1.25rem)]"
           >
             <motion.p
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 }}
-              className="text-sm sm:text-[15px] font-medium text-[#6e6e73] dark:text-[#98989d]"
+              className="mt-2 sm:mt-3 text-sm sm:text-[15px] font-medium text-[#6e6e73] dark:text-[#98989d]"
             >
               Co-Founder,{' '}
               <a
@@ -113,7 +113,7 @@ export function HeroModern() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25 }}
-                className="text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.05] tracking-tight text-[#1d1d1f] dark:text-white"
+                className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-[#1d1d1f] dark:text-white"
               >
                 Sanjaya
                 <br />
@@ -124,7 +124,7 @@ export function HeroModern() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35 }}
-                className="mt-4 text-2xl sm:text-3xl font-semibold text-[#3a3a3c] dark:text-[#e5e5ea]"
+                className="mt-2 sm:mt-4 lg:mt-[clamp(0.375rem,1.2vh,0.75rem)] text-2xl sm:text-3xl font-semibold text-[#3a3a3c] dark:text-[#e5e5ea]"
               >
                 <RoleRotator />
               </motion.p>
@@ -154,7 +154,7 @@ export function HeroModern() {
                   href={stat.href}
                   whileHover={{ y: -3 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                  className="flex flex-col items-center gap-1.5 px-2 py-4 sm:py-5 text-center hover:bg-black/[0.02] dark:hover:bg-white/[0.03] transition-colors"
+                  className="flex flex-col items-center gap-1.5 px-2 py-4 sm:py-5 lg:py-[clamp(0.625rem,1.8vh,1.25rem)] text-center hover:bg-black/[0.02] dark:hover:bg-white/[0.03] transition-colors"
                 >
                   <stat.icon className="w-4 h-4 text-[#0a84ff]" strokeWidth={2} />
                   <div className="text-2xl sm:text-3xl font-bold text-[#0a84ff] tabular-nums">
@@ -183,7 +183,7 @@ export function HeroModern() {
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.96 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                className="group px-6 sm:px-7 py-3.5 backdrop-blur-xl border border-white/10 text-white rounded-full flex items-center gap-2 shadow-sm hover:shadow-lg font-medium text-sm sm:text-base"
+                className="group px-6 sm:px-7 py-3 backdrop-blur-xl border border-white/10 text-white rounded-full flex items-center gap-2 shadow-sm hover:shadow-lg font-medium text-sm sm:text-base"
                 style={{ backgroundColor: '#0a84ffe6' }}
               >
                 <span>View My Work</span>
@@ -195,7 +195,7 @@ export function HeroModern() {
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.96 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                className="px-6 sm:px-7 py-3.5 glass-panel text-[#1d1d1f] dark:text-white rounded-full hover:shadow-lg hover:border-[#0a84ff]/30 transition-[box-shadow,border-color] duration-300 font-medium text-sm sm:text-base"
+                className="px-6 sm:px-7 py-3 glass-panel text-[#1d1d1f] dark:text-white rounded-full hover:shadow-lg hover:border-[#0a84ff]/30 transition-[box-shadow,border-color] duration-300 font-medium text-sm sm:text-base"
               >
                 Get In Touch
               </motion.a>
@@ -230,14 +230,14 @@ export function HeroModern() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="relative flex justify-center items-center"
           >
-            <div className="relative w-full max-w-sm sm:max-w-md">
+            <div className="relative w-full max-w-xs sm:max-w-sm lg:max-w-[21rem]">
               <div className="absolute -inset-3 sm:-inset-4 rounded-[2.5rem] bg-[#0a84ff] rotate-3 -z-10" />
               <div className="macos-card rounded-3xl overflow-hidden">
-                <div className="macos-window-bar px-4 py-3 border-b border-black/[0.06] dark:border-white/[0.08]">
+                <div className="macos-window-bar px-3.5 py-2 border-b border-black/[0.06] dark:border-white/[0.08]">
                   <span className="macos-dot bg-[#ff5f57]" />
                   <span className="macos-dot bg-[#febc2e]" />
                   <span className="macos-dot bg-[#28c840]" />
-                  <span className="ml-auto text-[11px] font-medium text-[#6e6e73] dark:text-[#98989d]">
+                  <span className="ml-auto text-[10px] font-medium text-[#6e6e73] dark:text-[#98989d]">
                     sanjaya.design
                   </span>
                 </div>
@@ -246,7 +246,8 @@ export function HeroModern() {
                     src="/assets/images/profile/Sanjayaprofile.jpg"
                     alt="Sanjaya Rajbhandari"
                     className="w-full h-full object-cover"
-                    loading="lazy"
+                    loading="eager"
+                    {...{ fetchpriority: 'high' }}
                   />
                 </div>
               </div>
@@ -256,7 +257,7 @@ export function HeroModern() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9 }}
-                className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[92%] macos-card rounded-2xl px-3 py-2.5 flex items-center justify-between gap-1"
+                className="absolute -bottom-5 left-1/2 -translate-x-1/2 w-[92%] macos-card rounded-2xl px-2.5 py-2 flex items-center justify-between gap-1"
               >
                 {[
                   { icon: '/assets/images/icons/figma.png', label: 'Figma', mono: false },
@@ -265,7 +266,7 @@ export function HeroModern() {
                   { icon: '/assets/images/icons/photoshop.png', label: 'Photoshop', mono: false },
                 ].map((tool) => (
                   <div key={tool.label} className="flex flex-col items-center gap-1 flex-1">
-                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-black/[0.03] dark:bg-white/10 flex items-center justify-center p-1.5">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-black/[0.03] dark:bg-white/10 flex items-center justify-center p-1.5">
                       <img
                         src={tool.icon}
                         alt={tool.label}

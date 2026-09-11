@@ -13,45 +13,46 @@ const clientLogos = [
   { id: 10, name: 'Sara Mart', image: '/assets/images/clients/sara mart extended.png' },
 ];
 
-function MarqueeRow({ direction, duration }: { direction: 'left' | 'right'; duration: number }) {
-  const items = [...clientLogos, ...clientLogos];
-
-  return (
-    <div className="overflow-hidden">
-      <motion.div
-        className="flex gap-4 sm:gap-6 w-max"
-        animate={{ x: direction === 'left' ? ['0%', '-50%'] : ['-50%', '0%'] }}
-        transition={{ duration, repeat: Infinity, ease: 'linear' }}
-      >
-        {items.map((client, i) => (
-          <div
-            key={`${client.id}-${i}`}
-            className="flex justify-center items-center shrink-0 w-24 h-20 sm:w-28 sm:h-24"
-          >
-            <img src={client.image} alt={client.name} className="max-w-full max-h-full object-contain" />
-          </div>
-        ))}
-      </motion.div>
-    </div>
-  );
-}
-
 export function ClientLogos() {
   return (
-    <section id="clients" className="py-16 bg-[#f5f5f7] dark:bg-black">
+    <section id="clients" className="py-16 sm:py-20 bg-[#f5f5f7] dark:bg-black">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12 sm:mb-14"
+        >
           <h2 className="text-4xl font-bold text-[#1d1d1f] dark:text-white mb-4">
             Whom I've Worked With
           </h2>
+          <div className="w-16 h-1 bg-[#0a84ff] mx-auto mb-6 rounded-full"></div>
           <p className="text-lg text-[#6e6e73] dark:text-[#98989d] max-w-2xl mx-auto">
             Trusted by businesses and startups to bring their vision to life — across design, web, and product.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="space-y-4 sm:space-y-6">
-          <MarqueeRow direction="left" duration={28} />
-          <MarqueeRow direction="right" duration={32} />
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-6 gap-y-10 sm:gap-x-8 sm:gap-y-12 max-w-5xl mx-auto">
+          {clientLogos.map((client, i) => (
+            <motion.div
+              key={client.id}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.4, delay: (i % 5) * 0.06 }}
+              whileHover={{ y: -4, scale: 1.06 }}
+              className="flex justify-center items-center h-16 sm:h-20"
+            >
+              <img
+                src={client.image}
+                alt={client.name}
+                loading="lazy"
+                decoding="async"
+                className="max-w-full max-h-full object-contain transition-opacity"
+              />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
