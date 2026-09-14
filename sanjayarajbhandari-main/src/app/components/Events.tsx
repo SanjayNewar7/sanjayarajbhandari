@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin } from 'lucide-react';
 import { events } from '../data/events';
+import { optimizedImage } from '../utils/optimizedImage';
 
 export function Events() {
   const featured = events.slice(0, 3);
@@ -36,7 +37,7 @@ export function Events() {
               >
                 <div className="aspect-[16/10] overflow-hidden">
                   <img
-                    src={event.image}
+                    src={optimizedImage(event.image)}
                     alt={event.title}
                     loading="lazy"
                     decoding="async"

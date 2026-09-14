@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { events } from '../data/events';
+import { optimizedImage } from '../utils/optimizedImage';
 
 export function EventsPage() {
   return (
@@ -40,7 +41,7 @@ export function EventsPage() {
                 >
                   <div className="aspect-[16/10] overflow-hidden">
                     <img
-                      src={event.image}
+                      src={optimizedImage(event.image)}
                       alt={event.title}
                       loading="lazy"
                       decoding="async"

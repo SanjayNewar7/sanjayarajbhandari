@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { optimizedImage } from '../utils/optimizedImage';
 
 const clientLogos = [
   { id: 1, name: 'Calsie', image: '/assets/images/clients/Calsie Extended.png' },
@@ -30,7 +31,7 @@ function LogoRow({ clients, direction }: { clients: typeof clientLogos; directio
             {clients.map((client) => (
               <div key={`${isCopy ? 'copy-' : ''}${client.id}`} className="client-logo-item group" title={client.name}>
                 <img
-                  src={client.image}
+                  src={optimizedImage(client.image)}
                   alt={isCopy ? '' : client.name}
                   loading="lazy"
                   decoding="async"

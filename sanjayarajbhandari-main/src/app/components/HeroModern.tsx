@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ArrowUpRight, ChevronDown, Layers, Briefcase, Smartphone } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { InteractiveGridBackground } from './InteractiveGridBackground';
+import { optimizedImage } from '../utils/optimizedImage';
 
 const roles = ['Graphic Designer', 'Web Developer', 'Mobile App Developer', 'UI/UX Designer'];
 
@@ -243,7 +244,7 @@ export function HeroModern() {
                 </div>
                 <div className="relative aspect-[4/5]">
                   <ImageWithFallback
-                    src="/assets/images/profile/Sanjayaprofile.jpg"
+                    src={optimizedImage('/assets/images/profile/Sanjayaprofile.jpg')}
                     alt="Sanjaya Rajbhandari"
                     className="w-full h-full object-cover"
                     loading="eager"

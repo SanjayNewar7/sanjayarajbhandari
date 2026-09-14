@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { ArrowLeft, ExternalLink, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { optimizedImage } from '../utils/optimizedImage';
 import { useState } from 'react';
 
 // Portfolio data for each category
@@ -207,7 +208,7 @@ export function CategoryPage() {
               >
                 <div className="aspect-[1000/1080] overflow-hidden">
                   <img
-                    src={work.image}
+                    src={optimizedImage(work.image)}
                     alt={work.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     loading="lazy"
@@ -294,7 +295,7 @@ export function CategoryPage() {
             
             <div className="flex justify-center items-center h-full">
               <img
-                src={data.works[currentIndex].image}
+                src={optimizedImage(data.works[currentIndex].image)}
                 alt={data.works[currentIndex].title}
                 className="max-h-[80vh] max-w-full object-contain"
                 loading="lazy"

@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { events } from '../data/events';
+import { optimizedImage } from '../utils/optimizedImage';
 
 export function EventDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -59,7 +60,7 @@ export function EventDetailPage() {
                 transition={{ duration: 0.8, delay: 0.15 }}
                 className="rounded-2xl overflow-hidden shadow-xl mb-10"
               >
-                <img src={event.image} alt={event.title} className="w-full aspect-[16/9] object-cover" />
+                <img src={optimizedImage(event.image)} alt={event.title} className="w-full aspect-[16/9] object-cover" />
               </motion.div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
@@ -155,7 +156,7 @@ export function EventDetailPage() {
                         >
                           <div className={index === 0 ? 'aspect-[16/9] overflow-hidden' : 'aspect-[4/3] overflow-hidden'}>
                             <img
-                              src={item.image}
+                              src={optimizedImage(item.image)}
                               alt={item.alt}
                               loading="lazy"
                               decoding="async"
@@ -185,7 +186,7 @@ export function EventDetailPage() {
                     >
                       <div className="aspect-[16/9] overflow-hidden bg-gray-200">
                         <img
-                          src={other.image}
+                          src={optimizedImage(other.image)}
                           alt={other.title}
                           loading="lazy"
                           decoding="async"

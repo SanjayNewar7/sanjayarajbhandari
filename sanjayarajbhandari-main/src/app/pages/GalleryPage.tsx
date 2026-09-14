@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, ArrowLeft, X } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { optimizedImage } from '../utils/optimizedImage';
 import { useState, useEffect } from 'react';
 
 export function GalleryPage() {
@@ -206,7 +207,7 @@ export function GalleryPage() {
               >
                 <div className="aspect-square bg-gray-200 dark:bg-white/10 flex items-center justify-center overflow-hidden">
                   <img
-                    src={image.src}
+                    src={optimizedImage(image.src)}
                     alt={`Design ${image.id}`}
                     loading="lazy"
                     decoding="async"
@@ -265,7 +266,7 @@ export function GalleryPage() {
               >
                 <div className="aspect-square bg-gray-200 dark:bg-white/10 flex items-center justify-center overflow-hidden">
                   <img
-                    src={image.src}
+                    src={optimizedImage(image.src)}
                     alt={`Latest Design ${image.id}`}
                     loading="lazy"
                     decoding="async"
@@ -412,7 +413,7 @@ export function GalleryPage() {
                   <div key={image.id} className="flex-shrink-0 w-full">
                     <div className="aspect-video bg-gray-200 dark:bg-white/10 flex items-center justify-center overflow-hidden">
                       <img
-                        src={image.src}
+                        src={optimizedImage(image.src)}
                         alt={`Design ${image.id} - Full Screen Preview`}
                         className="w-full h-full object-contain max-h-[90vh]"
                         style={{ aspectRatio: '1000/1100' }}
@@ -523,7 +524,7 @@ function PackagingSection({ packagingImages }: { packagingImages: Array<{ id: nu
                         >
                           <div className="aspect-[1000/1100] overflow-hidden">
                             <img
-                              src={image.src}
+                              src={optimizedImage(image.src)}
                               alt={`Packaging Design ${image.id}`}
                               loading="lazy"
                               decoding="async"
@@ -627,7 +628,7 @@ function HousePreviewSection({ housePreviewImages }: { housePreviewImages: Array
                         >
                           <div className="aspect-[1000/1100] overflow-hidden">
                             <img
-                              src={image.src}
+                              src={optimizedImage(image.src)}
                               alt={`House Preview ${image.id}`}
                               loading="lazy"
                               decoding="async"
@@ -709,7 +710,7 @@ function LogoDesignSection({ logoDesignImages }: { logoDesignImages: Array<{ id:
             >
               <div className="aspect-square overflow-hidden p-6">
                 <img
-                  src={image.src}
+                  src={optimizedImage(image.src)}
                   alt={image.title}
                   loading="lazy"
                   decoding="async"
@@ -764,7 +765,7 @@ function FlyersSection({ flyersImages }: { flyersImages: Array<{ id: number; src
             >
               <div className="aspect-[1000/1100] overflow-hidden">
                 <img
-                  src={image.src}
+                  src={optimizedImage(image.src)}
                   alt={image.title}
                   loading="lazy"
                   decoding="async"

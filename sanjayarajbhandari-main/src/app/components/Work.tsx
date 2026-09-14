@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AnimatePresence, motion, useInView } from 'motion/react';
 import { ArrowUpRight, ChevronLeft, ChevronRight, Film, Wallet, Paintbrush, Trophy, X, type LucideIcon } from 'lucide-react';
 import { InteractiveGridBackground } from './InteractiveGridBackground';
+import { optimizedImage } from '../utils/optimizedImage';
 
 // ---------- Graphic Design ----------
 const portfolioItems = [
@@ -208,7 +209,7 @@ function AppPhoneSlideshow({ app, order }: { app: MobileApp; order: number }) {
       <AnimatePresence initial={false} mode="popLayout">
         <motion.img
           key={app.screenshots[slide]}
-          src={app.screenshots[slide]}
+          src={optimizedImage(app.screenshots[slide])}
           alt={`${app.name} app screen ${slide + 1}`}
           initial={{ opacity: 0, scale: 1.025 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -408,7 +409,7 @@ export function Work() {
                   >
                     <div className="aspect-[1000/1080] overflow-hidden">
                       <img
-                        src={item.image}
+                        src={optimizedImage(item.image)}
                         alt={item.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         loading="lazy"
@@ -516,7 +517,7 @@ export function Work() {
                   </div>
                   <div className="aspect-[16/10] overflow-hidden">
                     <img
-                      src={project.image}
+                      src={optimizedImage(project.image)}
                       alt={project.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
@@ -559,7 +560,7 @@ export function Work() {
                 >
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
-                      src={project.image}
+                      src={optimizedImage(project.image)}
                       alt={project.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       loading="lazy"
