@@ -104,6 +104,73 @@ export function EventDetailPage() {
               <div>
                 <h2 className="text-2xl font-bold text-[#1d1d1f] dark:text-white mb-4">About this event</h2>
                 <p className="text-lg text-[#3a3a3c] dark:text-[#c7c7cc] leading-relaxed">{event.description}</p>
+                {event.overview && (
+                  <p className="mt-4 text-base leading-7 text-[#6e6e73] dark:text-[#98989d]">{event.overview}</p>
+                )}
+                {event.responsibilities && (
+                  <div className="mt-8 rounded-3xl border border-black/[0.06] bg-[#f5f5f7] p-6 dark:border-white/10 dark:bg-white/[0.05] sm:p-7">
+                    <h3 className="text-xl font-bold text-[#1d1d1f] dark:text-white">Creative responsibilities</h3>
+                    <ul className="mt-5 grid gap-4 sm:grid-cols-2">
+                      {event.responsibilities.map((responsibility) => (
+                        <li key={responsibility} className="flex gap-3 text-[#3a3a3c] dark:text-[#c7c7cc]">
+                          <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#0a84ff]" />
+                          <span className="leading-6">{responsibility}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {event.outcome && (
+                  <div className="mt-8 border-l-4 border-[#0a84ff] pl-5">
+                    <h3 className="text-xl font-bold text-[#1d1d1f] dark:text-white">
+                      {event.type === 'Marketing Campaign' ? 'Campaign outcome' : 'Event outcome'}
+                    </h3>
+                    <p className="mt-3 leading-7 text-[#6e6e73] dark:text-[#98989d]">{event.outcome}</p>
+                  </div>
+                )}
+
+                {event.gallery && event.gallery.length > 0 && (
+                  <section className="mt-12" aria-labelledby="event-gallery-title">
+                    <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0a84ff]">Inside the experience</p>
+                        <h2 id="event-gallery-title" className="mt-2 text-2xl font-bold text-[#1d1d1f] dark:text-white sm:text-3xl">
+                          Three days, one creative journey
+                        </h2>
+                      </div>
+                      <p className="max-w-sm text-sm leading-6 text-[#6e6e73] dark:text-[#98989d]">
+                        From an active classroom to a shared moment of recognition.
+                      </p>
+                    </div>
+
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      {event.gallery.map((item, index) => (
+                        <motion.figure
+                          key={item.image}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, margin: '-60px' }}
+                          transition={{ duration: 0.45, delay: index * 0.08 }}
+                          className={`group overflow-hidden rounded-3xl border border-black/[0.06] bg-white shadow-sm dark:border-white/10 dark:bg-white/[0.05] ${index === 0 ? 'sm:col-span-2' : ''}`}
+                        >
+                          <div className={index === 0 ? 'aspect-[16/9] overflow-hidden' : 'aspect-[4/3] overflow-hidden'}>
+                            <img
+                              src={item.image}
+                              alt={item.alt}
+                              loading="lazy"
+                              decoding="async"
+                              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]"
+                            />
+                          </div>
+                          <figcaption className="p-5 text-sm leading-6 text-[#6e6e73] dark:text-[#b0b0b5]">
+                            <span className="mr-2 font-semibold text-[#0a84ff]">0{index + 1}</span>
+                            {item.caption}
+                          </figcaption>
+                        </motion.figure>
+                      ))}
+                    </div>
+                  </section>
+                )}
               </div>
             </div>
 

@@ -13,16 +13,19 @@ import { Footer } from '../components/Footer';
 export function HomePage() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#0a0a0a]">
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <Header />
-      <HeroModern />
-      <Experience />
-      <Skills />
-      <Work />
-      <ClientLogos />
-      <GlobalReach />
-      <Events />
-      <Testimonials />
-      <Contact />
+      <main id="main-content" className="landing-page">
+        <HeroModern />
+        <Experience />
+        <Skills />
+        <Work />
+        <ClientLogos />
+        <GlobalReach />
+        <Events />
+        <Testimonials />
+        <Contact />
+      </main>
       <Footer />
     </div>
   );

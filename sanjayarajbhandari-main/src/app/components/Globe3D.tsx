@@ -147,8 +147,8 @@ export function Globe3D({
       ref={wrapRef}
       className="relative mx-auto"
       style={{
-        width: 'clamp(220px, 34vh, 380px)',
-        height: 'clamp(220px, 34vh, 380px)',
+        width: 'clamp(300px, 52vh, 540px)',
+        height: 'clamp(300px, 52vh, 540px)',
         maxWidth: '100%',
         aspectRatio: '1 / 1',
       }}

@@ -24,12 +24,14 @@ export function RadarChart({
   size = 220,
   panelSide = 'right',
   onHoverChange,
+  showPanel = true,
 }: {
   points: SkillPoint[];
   color?: string;
   size?: number;
   panelSide?: 'left' | 'right';
   onHoverChange?: (hovered: boolean) => void;
+  showPanel?: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -167,7 +169,7 @@ export function RadarChart({
 
       {/* Hover sidebar — full stat breakdown with tool logos + skill meters */}
       <AnimatePresence>
-        {hovered && (
+        {showPanel && hovered && (
           <motion.div
             initial={{ opacity: 0, y: 8, x: 0 }}
             animate={{ opacity: 1, y: 0, x: 0 }}

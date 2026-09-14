@@ -99,7 +99,7 @@ ${formData.message}`);
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1d1d1f] dark:text-white mb-4">
-              Get In Touch
+              Get in touch
             </h2>
             <p className="text-lg text-[#6e6e73] dark:text-[#98989d]">
               Have a design, web, or app project in mind? Let's build it together.
@@ -194,55 +194,73 @@ ${formData.message}`);
 
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
-                  <label className="block text-sm mb-2">Your Name</label>
+                  <label htmlFor="contact-name" className="block text-sm mb-2">Your name</label>
                   <input
+                    id="contact-name"
                     type="text"
                     name="name"
+                    autoComplete="name"
+                    required
+                    aria-invalid={Boolean(errors.name)}
+                    aria-describedby={errors.name ? 'contact-name-error' : undefined}
                     value={formData.name}
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3 rounded-xl text-white/90 bg-white/10 focus:outline-none focus:ring-2 focus:ring-white placeholder:text-white/60 ${errors.name ? 'border-2 border-red-300' : ''}`}
                     placeholder="Ramesh Shrestha"
                   />
-                  {errors.name && <p className="text-red-100 text-sm mt-1">{errors.name}</p>}
+                  {errors.name && <p id="contact-name-error" role="alert" className="text-red-100 text-sm mt-1">{errors.name}</p>}
                 </div>
 
                 <div>
-                  <label className="block text-sm mb-2">Your Email</label>
+                  <label htmlFor="contact-email" className="block text-sm mb-2">Your email</label>
                   <input
+                    id="contact-email"
                     type="email"
                     name="email"
+                    autoComplete="email"
+                    required
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={errors.email ? 'contact-email-error' : undefined}
                     value={formData.email}
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3 rounded-xl text-white/90 bg-white/10 focus:outline-none focus:ring-2 focus:ring-white placeholder:text-white/60 ${errors.email ? 'border-2 border-red-300' : ''}`}
                     placeholder="ramesh.shrestha@example.com"
                   />
-                  {errors.email && <p className="text-red-100 text-sm mt-1">{errors.email}</p>}
+                  {errors.email && <p id="contact-email-error" role="alert" className="text-red-100 text-sm mt-1">{errors.email}</p>}
                 </div>
 
                 <div>
-                  <label className="block text-sm mb-2">Subject</label>
+                  <label htmlFor="contact-subject" className="block text-sm mb-2">Subject</label>
                   <input
+                    id="contact-subject"
                     type="text"
                     name="subject"
+                    required
+                    aria-invalid={Boolean(errors.subject)}
+                    aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
                     value={formData.subject}
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3 rounded-xl text-white/90 bg-white/10 focus:outline-none focus:ring-2 focus:ring-white placeholder:text-white/60 ${errors.subject ? 'border-2 border-red-300' : ''}`}
                     placeholder="Project Inquiry"
                   />
-                  {errors.subject && <p className="text-red-100 text-sm mt-1">{errors.subject}</p>}
+                  {errors.subject && <p id="contact-subject-error" role="alert" className="text-red-100 text-sm mt-1">{errors.subject}</p>}
                 </div>
 
                 <div>
-                  <label className="block text-sm mb-2">Message</label>
+                  <label htmlFor="contact-message" className="block text-sm mb-2">Message</label>
                   <textarea
+                    id="contact-message"
                     name="message"
+                    required
+                    aria-invalid={Boolean(errors.message)}
+                    aria-describedby={errors.message ? 'contact-message-error' : undefined}
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
                     className={`w-full px-4 py-3 rounded-xl text-white/90 bg-white/10 focus:outline-none focus:ring-2 focus:ring-white resize-none placeholder:text-white/60 ${errors.message ? 'border-2 border-red-300' : ''}`}
                     placeholder="Tell me about your project..."
                   ></textarea>
-                  {errors.message && <p className="text-red-100 text-sm mt-1">{errors.message}</p>}
+                  {errors.message && <p id="contact-message-error" role="alert" className="text-red-100 text-sm mt-1">{errors.message}</p>}
                 </div>
 
                 <button

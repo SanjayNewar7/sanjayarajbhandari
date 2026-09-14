@@ -44,7 +44,7 @@ export function GlobalReach() {
   }, [inView]);
 
   return (
-    <section id="global-reach" className="min-h-screen flex flex-col justify-center py-[clamp(2.5rem,8vh,5rem)] bg-white dark:bg-[#0a0a0a]">
+    <section id="global-reach" className="flex min-h-screen flex-col justify-center bg-white py-16 dark:bg-[#0a0a0a] sm:py-20 lg:h-[100svh] lg:min-h-[650px] lg:py-0">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -52,11 +52,11 @@ export function GlobalReach() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-[clamp(1.5rem,4vh,3rem)]"
+          className="mb-[clamp(1rem,2.5vh,2rem)] text-center"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#1d1d1f] dark:text-white mb-4">Global Reach</h2>
-          <div className="w-16 h-1 bg-[#0a84ff] mx-auto mb-6 rounded-full"></div>
-          <p className="text-lg sm:text-xl text-[#6e6e73] dark:text-[#98989d] max-w-2xl mx-auto mb-2">
+          <h2 className="mb-3 text-4xl font-bold text-[#1d1d1f] dark:text-white sm:text-5xl">Global Reach</h2>
+          <div className="mx-auto mb-4 h-1 w-16 rounded-full bg-[#0a84ff]"></div>
+          <p className="mx-auto mb-2 max-w-2xl text-base text-[#6e6e73] dark:text-[#98989d] sm:text-lg">
             Work delivered for clients across continents, remotely and on-site
           </p>
           <p className="font-mono text-sm text-[#0a84ff]">
@@ -65,13 +65,13 @@ export function GlobalReach() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 items-stretch gap-5 lg:grid-cols-[1.25fr_0.75fr]">
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="macos-card rounded-[2rem] p-[clamp(1rem,2.5vh,2rem)] flex flex-col items-center justify-center"
+            className="macos-card flex min-h-[340px] flex-col items-center justify-center rounded-[2rem] p-2 sm:min-h-[440px] lg:min-h-0"
           >
             <Globe3D markers={markers} selected={selected} onAutoDeselect={() => setSelected(null)} />
           </motion.div>
@@ -81,7 +81,7 @@ export function GlobalReach() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.22 }}
-            className="macos-card rounded-[2rem] p-6 sm:p-8 flex flex-col"
+            className="macos-card flex flex-col rounded-[2rem] p-5 sm:p-6"
           >
             <div className="flex items-center justify-between mb-5">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-[#6e6e73] dark:text-[#98989d]">
@@ -90,7 +90,7 @@ export function GlobalReach() {
               <span className="text-xs font-mono text-[#0a84ff]">{servedCountries.length}</span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-3 flex-1 content-center">
+            <div className="grid flex-1 grid-cols-2 content-center gap-3">
               {servedCountries.map((c) => {
                 const isActive = selected === c.code;
                 return (

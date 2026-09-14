@@ -18,7 +18,9 @@ export function InteractiveGridBackground() {
 
     let width = 0;
     let height = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // A 1.5x backing store stays crisp while avoiding the 4x pixel cost of
+    // rendering a 2x canvas on high-density displays.
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     let frame = 0;
     let time = 0;
 
@@ -144,10 +146,12 @@ export function InteractiveGridBackground() {
         }
       }
 
-      frame = requestAnimationFrame(draw);
+      if (!reducedMotion) frame = requestAnimationFrame(draw);
     }
 
-    frame = requestAnimationFrame(draw);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) draw();
+    else frame = requestAnimationFrame(draw);
 
     // Pause entirely while the hero is scrolled out of view — a full-viewport
     // canvas redrawing every frame forever, even on unrelated pages of the
@@ -155,7 +159,7 @@ export function InteractiveGridBackground() {
     const io = new IntersectionObserver(
       ([entry]) => {
         cancelAnimationFrame(frame);
-        if (entry.isIntersecting) frame = requestAnimationFrame(draw);
+        if (entry.isIntersecting && !reducedMotion) frame = requestAnimationFrame(draw);
       },
       { threshold: 0 }
     );

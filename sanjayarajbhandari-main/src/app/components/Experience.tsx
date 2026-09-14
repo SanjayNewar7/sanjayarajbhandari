@@ -1,205 +1,84 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { ExperienceBackground } from './ExperienceBackground';
 
-// Ordered chronologically, oldest first, so the wave reads left to right.
 const experiences = [
-  {
-    title: 'Graphics Designer',
-    company: 'Bihani Tech',
-    period: '2023 - 2025',
-    duration: '2.5 yrs',
-    current: false,
-    description: 'Branding and marketing design for a range of clients.',
-    duties: [
-      'Designed branding for multiple clients',
-      'Created social & marketing content',
-      'Built print-ready packaging designs',
-    ],
-    logo: '/assets/previous works/BihaniTech.png',
-  },
-  {
-    title: 'Project Manager',
-    company: 'Brothers Production',
-    period: '2024 - 2026',
-    duration: '2 yrs',
-    current: false,
-    description: 'Managed creative projects from concept to delivery.',
-    duties: [
-      'Coordinated cross-functional creative teams',
-      'Managed budgets and delivery schedules',
-      'Resolved production bottlenecks',
-    ],
-    logo: '/assets/previous works/Brothers Production.png',
-  },
-  {
-    title: 'Co-Founder & Graphics Designer',
-    company: 'Loopix Creations',
-    period: '2025 - Present',
-    duration: 'Current',
-    current: true,
-    description: 'Co-founded a design studio, leading creative direction for clients across Nepal.',
-    duties: [
-      'Set creative direction for client projects',
-      'Led a small design team',
-      'Managed client relationships & timelines',
-    ],
-    logo: '/assets/previous works/Loopix final.png',
-  },
-  {
-    title: 'Roof Geometry Data Analyst',
-    company: 'CloudFactory',
-    period: 'Mar 2026 - Present',
-    duration: 'Current',
-    current: true,
-    description: 'Annotating roof geometry data for ML and remote-sensing pipelines.',
-    duties: [
-      'Annotated roof geometry for ML training',
-      'Ensured accuracy across large datasets',
-      'Performed QA on remote-sensing imagery',
-    ],
-    logo: '/assets/previous works/cloudfactory.jpg',
-  },
+  { title: 'Graphic Designer', company: 'Bihani Tech', period: '2023–2025', description: 'Branding and marketing design for a range of clients.', duties: ['Designed multi-channel brand systems', 'Created social and marketing content', 'Prepared production-ready packaging'], logo: '/assets/previous works/BihaniTech.png' },
+  { title: 'Project Manager', company: 'Brothers Production', period: '2024–2026', description: 'Managed creative projects from concept through delivery.', duties: ['Coordinated cross-functional teams', 'Managed budgets and delivery schedules', 'Resolved production bottlenecks'], logo: '/assets/previous works/Brothers Production.png' },
+  { title: 'Co-Founder & Graphic Designer', company: 'Loopix Creations', period: '2025–Present', description: 'Co-founded a design studio and lead creative direction for clients across Nepal.', duties: ['Set creative direction for client work', 'Lead a multidisciplinary design team', 'Manage client relationships and timelines'], logo: '/assets/previous works/Loopix final.png' },
+  { title: 'Roof Geometry Data Analyst', company: 'CloudFactory', period: 'Mar 2026–Present', description: 'Annotating roof-geometry data for machine-learning and remote-sensing pipelines.', duties: ['Annotate roof geometry for ML training', 'Maintain accuracy across large datasets', 'Perform QA on remote-sensing imagery'], logo: '/assets/previous works/cloudfactory.jpg' },
 ];
 
-const PEAK_Y = 26; // % from top — even-index nodes sit here, labels above
-const TROUGH_Y = 74; // % from top — odd-index nodes sit here, labels below
+// SVG and HTML share coordinates, with clearance for adjacent detail panels.
+const nodes = [{ x: 125, y: 27 }, { x: 375, y: 73 }, { x: 625, y: 27 }, { x: 875, y: 73 }];
+const wavePath = `M 0 50 C 60 50, 65 27, 125 27 ${nodes.slice(1).map((node, index) => {
+  const previous = nodes[index];
+  const midpoint = (previous.x + node.x) / 2;
+  return `C ${midpoint} ${previous.y}, ${midpoint} ${node.y}, ${node.x} ${node.y}`;
+}).join(' ')} C 935 73, 940 50, 1000 50`;
 
-// x positions spread evenly across a 1000-unit-wide coordinate space, with a
-// short lead-in/trail-out stub so the curve reads as continuing off-screen,
-// matching the reference.
-const N = experiences.length;
-const nodeX = experiences.map((_, i) => 90 + (i / (N - 1)) * 820);
-const nodeY = experiences.map((_, i) => (i % 2 === 0 ? PEAK_Y : TROUGH_Y));
-
-function buildWavePath() {
-  let d = `M ${nodeX[0] - 70} ${nodeY[0] + (nodeY[0] < 50 ? 22 : -22)}`;
-  d += ` Q ${nodeX[0] - 30} ${nodeY[0]}, ${nodeX[0]} ${nodeY[0]}`;
-  for (let i = 0; i < N - 1; i++) {
-    const midX = (nodeX[i] + nodeX[i + 1]) / 2;
-    d += ` C ${midX} ${nodeY[i]}, ${midX} ${nodeY[i + 1]}, ${nodeX[i + 1]} ${nodeY[i + 1]}`;
-  }
-  d += ` L ${nodeX[N - 1] + 70} ${nodeY[N - 1]}`;
-  return d;
+function DetailCard({ index }: { index: number }) {
+  const item = experiences[index];
+  return (
+    <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }} className="experience-detail rounded-2xl border border-white/25 bg-[#0759b4]/95 p-4 text-left shadow-2xl backdrop-blur-2xl">
+      <p className="text-xs font-bold uppercase tracking-wider text-cyan-200">{item.period}</p>
+      <h3 className="mt-2 text-xl font-bold text-white">{item.title}</h3>
+      <p className="mt-1 text-sm font-semibold text-cyan-200">{item.company}</p>
+      <p className="mt-3 text-sm leading-relaxed text-white/80">{item.description}</p>
+      <ul className="mt-4 space-y-2 border-t border-white/15 pt-4 text-sm text-white/80">
+        {item.duties.map(duty => <li key={duty} className="flex gap-2"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-200" />{duty}</li>)}
+      </ul>
+    </motion.div>
+  );
 }
 
 export function Experience() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const pathD = buildWavePath();
-
+  const [active, setActive] = useState<number | null>(null);
   return (
-    <section
-      id="experience"
-      className="relative min-h-screen flex flex-col justify-center py-[clamp(3rem,10vh,6rem)] overflow-hidden"
-    >
+    <section id="experience" className="relative isolate overflow-hidden py-20 sm:py-24 lg:py-0">
       <ExperienceBackground />
-
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-[clamp(1.5rem,5vh,3rem)]"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Professional Experience
-          </h2>
-          <p className="text-base sm:text-lg text-white/85 max-w-2xl mx-auto">
-            A multi-disciplinary path across design, product, and data — currently balancing
-            a creative practice with a full-time analyst role.
-          </p>
+      <div className="experience-content container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="experience-heading mx-auto mb-10 w-full text-center lg:mb-0">
+          <h2 className="font-bold text-white" style={{ fontSize: 'clamp(1.5rem, 3.7vw, 3.25rem)', lineHeight: 1.15, whiteSpace: 'nowrap' }}>Professional experience</h2>
+          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">A multidisciplinary path across design, product, and data—balancing creative practice with analytical work.</p>
         </motion.div>
 
-        {/* Horizontal wave timeline — hover a node for details; the panel
-            stays open while the cursor is anywhere in this wrapper (node or
-            panel) and closes only when it leaves the whole area. */}
-        <div className="overflow-x-auto pb-2" onMouseLeave={() => setActiveIndex(null)}>
-          <div className="relative h-[clamp(320px,52vh,480px)] min-w-[760px] max-w-5xl mx-auto">
-            <svg viewBox="0 0 1000 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
-              <path d={pathD} fill="none" stroke="#7dd3ff" strokeOpacity={0.4} strokeWidth={1.6} vectorEffect="non-scaling-stroke" />
-            </svg>
+        <div className="experience-wave relative mx-auto hidden w-full max-w-7xl lg:block" onMouseLeave={() => setActive(null)} onKeyDown={event => { if (event.key === 'Escape') setActive(null); }}>
+          <svg viewBox="0 0 1000 100" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
+            <defs><linearGradient id="journey-line" x1="0" x2="1"><stop stopColor="#67e8f9" /><stop offset=".5" stopColor="#e879f9" /><stop offset="1" stopColor="#a5b4fc" /></linearGradient></defs>
+            <path d={wavePath} fill="none" stroke="rgba(255,255,255,.14)" strokeWidth="8" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+            <path d={wavePath} fill="none" stroke="url(#journey-line)" strokeWidth="4" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+          </svg>
 
-            {experiences.map((exp, i) => {
-              const isPeak = i % 2 === 0;
-              const xPct = (nodeX[i] / 1000) * 100;
-              const isActive = activeIndex === i;
-              const flipLeft = xPct > 62;
+          {experiences.map((item, index) => {
+            const node = nodes[index];
+            const topLabel = index % 2 === 0;
+            return <div key={item.company} className={`absolute h-0 w-0 ${active === index ? 'z-30' : 'z-10'}`} style={{ left: `${node.x / 10}%`, top: `${node.y}%` }} onMouseEnter={() => setActive(index)} onMouseLeave={() => setActive(null)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setActive(null); }}>
+              <div className={`experience-label absolute left-0 w-44 -translate-x-1/2 text-center ${topLabel ? 'bottom-[44px]' : 'top-[44px]'}`}>
+                <h3 className="text-base font-bold leading-tight text-white">{item.title}</h3>
+                <p className="mt-1 text-xs font-bold uppercase tracking-wide text-cyan-200">{item.company}</p>
+                <p className="mt-1 text-xs text-white/65">{item.period}</p>
+              </div>
+              <div className="absolute -left-7 -top-7 h-14 w-14">
+              <motion.button type="button" whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.96 }} onFocus={() => setActive(index)} onClick={() => setActive(index)} aria-label={`View ${item.title} at ${item.company}`} aria-controls={`experience-detail-${index}`} aria-expanded={active === index} className="relative flex h-14 w-14 items-center justify-center rounded-full border-2 border-cyan-300 bg-white p-2 shadow-[0_0_0_7px_rgba(103,232,249,.12),0_12px_30px_rgba(0,0,0,.22)]">
+                <img src={item.logo} alt="" className="h-full w-full rounded-full object-contain" />
+              </motion.button>
+              </div>
+              <AnimatePresence>{active === index && (
+                <motion.div key={index} id={`experience-detail-${index}`} role="region" aria-label={`${item.company} experience details`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: .15 }} className={`absolute left-0 w-[272px] -translate-x-1/2 ${topLabel ? 'top-8 pt-4' : 'bottom-8 pb-4'}`}>
+                  <span aria-hidden="true" className={`absolute left-1/2 h-4 w-px bg-cyan-200 ${topLabel ? 'top-0' : 'bottom-0'}`} />
+                  <DetailCard index={index} />
+                </motion.div>
+              )}</AnimatePresence>
+            </div>;
+          })}
 
-              return (
-                <div key={exp.company} className="contents">
-                  <div
-                    className={`absolute -translate-x-1/2 w-40 sm:w-48 text-center ${isPeak ? 'top-0' : 'bottom-0'}`}
-                    style={{ left: `${xPct}%` }}
-                  >
-                    <h3 className="text-[13px] sm:text-sm font-bold text-white leading-tight">{exp.title}</h3>
-                    <p className="text-[11px] sm:text-xs text-[#7dd3ff] font-semibold uppercase tracking-wide mt-1">
-                      {exp.company}
-                    </p>
-                    <p className="text-[10px] sm:text-[11px] text-white/60 mt-0.5">{exp.period}</p>
-                  </div>
-
-                  <motion.button
-                    initial={{ opacity: 0, scale: 0.6 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                    whileHover={{ scale: 1.08 }}
-                    onMouseEnter={() => setActiveIndex(i)}
-                    onClick={() => setActiveIndex(isActive ? null : i)}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white shadow-lg flex items-center justify-center transition-shadow z-10"
-                    style={{
-                      left: `${xPct}%`,
-                      top: `${nodeY[i]}%`,
-                      boxShadow: isActive ? '0 0 0 3px #0a84ff' : `0 0 0 2px ${exp.current ? '#0a84ff' : 'rgba(255,255,255,0.35)'}`,
-                    }}
-                    aria-label={`${exp.title} at ${exp.company}`}
-                  >
-                    <img src={exp.logo} alt="" className="w-9 h-9 sm:w-11 sm:h-11 object-contain" />
-                  </motion.button>
-
-                  {/* Detail panel — pinned beside its node, glass blur, flips
-                      to the left near the right edge so it never runs off-screen. */}
-                  <AnimatePresence>
-                    {isActive && (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.95, x: flipLeft ? 8 : -8 }}
-                        animate={{ opacity: 1, scale: 1, x: 0 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute z-20 w-72 sm:w-80 rounded-2xl bg-white/[0.16] backdrop-blur-3xl border border-white/25 shadow-xl p-4 -translate-y-1/2"
-                        style={
-                          flipLeft
-                            ? { right: `${100 - xPct}%`, marginRight: 46, top: `${nodeY[i]}%` }
-                            : { left: `${xPct}%`, marginLeft: 46, top: `${nodeY[i]}%` }
-                        }
-                      >
-                        <div className="flex items-center gap-2 mb-2 flex-wrap">
-                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#0a84ff]/30 text-white font-medium">
-                            {exp.period}
-                          </span>
-                          {exp.current && (
-                            <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/20 text-white font-medium">
-                              Current
-                            </span>
-                          )}
-                        </div>
-                        <h3 className="text-base font-bold text-white leading-tight">{exp.title}</h3>
-                        <p className="text-[#7dd3ff] text-sm font-semibold mb-2">{exp.company}</p>
-                        <p className="text-white/85 text-xs mb-2">{exp.description}</p>
-                        <ul className="text-white/80 text-xs space-y-1 pt-2 border-t border-white/15 list-disc list-inside">
-                          {exp.duties.map((duty) => (
-                            <li key={duty}>{duty}</li>
-                          ))}
-                        </ul>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </div>
         </div>
+
+        <ol className="relative space-y-6 lg:hidden">
+          <svg viewBox="0 0 100 1000" preserveAspectRatio="none" className="absolute bottom-8 left-2 top-8 h-[calc(100%-4rem)] w-16 opacity-70" aria-hidden="true"><path d="M 22 0 C 92 110, 92 225, 24 330 S 4 540, 76 660 S 88 875, 20 1000" fill="none" stroke="#a5f3fc" strokeWidth="4" strokeLinecap="round" /></svg>
+          {experiences.map((item, index) => <motion.li key={item.company} initial={{ opacity: 0, x: index % 2 ? 18 : -18 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} className="relative ml-12 sm:ml-16"><DetailCard index={index} /></motion.li>)}
+        </ol>
       </div>
     </section>
   );

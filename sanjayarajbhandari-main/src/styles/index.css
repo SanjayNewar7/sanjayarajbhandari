@@ -1,3 +1,82 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+
+/* Skip layout, paint and image decoding for distant landing-page sections.
+   Browsers materialize each section shortly before it enters the viewport. */
+.landing-page > section:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-block-size: auto 780px;
+}
+
+/* Two compositor-only client marquees. Every row owns a unique logo set;
+   copies exist solely beyond the viewport to make the loop seamless. */
+.client-marquee {
+  isolation: isolate;
+  contain: layout paint style;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.client-marquee-track {
+  display: flex;
+  width: max-content;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  contain: layout paint;
+}
+.client-logo-set {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 6.5rem);
+  padding-right: clamp(2.5rem, 6vw, 6.5rem);
+}
+.client-logo-item {
+  display: flex;
+  width: clamp(9rem, 15vw, 13rem);
+  height: clamp(5.5rem, 9vw, 7rem);
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  contain: strict;
+  transform: translateZ(0);
+}
+.client-marquee-reverse { animation: client-scroll-left 34s linear infinite; }
+.client-marquee-forward { animation: client-scroll-right 38s linear infinite; }
+.client-marquee:hover .client-marquee-track { animation-play-state: paused; }
+@keyframes client-scroll-left {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes client-scroll-right {
+  from { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .client-marquee-track { animation: none; transform: none; }
+  .client-logo-copy { display: none; }
+}
+
+/* Reserve viewport space for navigation, heading and each anchored detail card. */
+@media (min-width: 1024px) {
+  #experience { height: 100svh; min-height: 600px; scroll-margin-top: 0; }
+  #experience .experience-content {
+    height: 100%; padding-top: 88px; padding-bottom: 16px;
+    display: flex; flex-direction: column;
+  }
+  #experience .experience-heading { flex: 0 0 auto; }
+  #experience .experience-heading > p { margin-top: 10px; font-size: 15px; line-height: 1.45; max-width: 680px; }
+  #experience .experience-wave { flex: 1 1 auto; min-height: 370px; }
+  #experience .experience-label h3 { font-size: 14px; line-height: 1.2; }
+  #experience .experience-label p { font-size: 11px; line-height: 1.25; }
+  #experience .experience-detail { padding: 12px; }
+  #experience .experience-detail h3 { margin-top: 6px; font-size: 15px; line-height: 1.2; }
+  #experience .experience-detail p { font-size: 12px; line-height: 1.35; }
+  #experience .experience-detail > p:first-child { font-size: 10px; }
+  #experience .experience-detail > p:nth-of-type(3) { margin-top: 8px; }
+  #experience .experience-detail ul { margin-top: 8px; padding-top: 8px; font-size: 12px; line-height: 1.35; }
+  #experience .experience-detail li { margin-top: 0; margin-bottom: 5px; }
+}

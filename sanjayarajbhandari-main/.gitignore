@@ -1,1 +1,6 @@
 node_modules
+.vite-dev.*.log
+.after-*.png
+.before-*.png
+.experience-*.png
+.verify-*.png
